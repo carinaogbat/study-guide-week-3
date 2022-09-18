@@ -9,33 +9,59 @@ of an attribute would be the input of type, "password"
 (<input type="password")
 
 In an HTML element, what does the id attribute do? The class attribute?
+-the id attribute is used to uniquely identify an element, each id is unique
+-the class attribute is used to categorize elements, multiple elements can belong to a class
 
 What is an inline element? A block element? What are some examples of each?
+-an inline element is an element that will sit on a line with other elements without breaking the flow of a doc
+    (hyperlinks, images, strong, emphasis)
+-a block element starts on a new line and takes up the whole width of its containing element
+    (paragraphs, headings, tables, lists, list items)
 
 How do semantic HTML elements help developers markup content?
+-then help by organzing the html and making it more human readable
 
 Usage of specific elements:
+(use id and/or class to label what a generic element is supposed to be)
 
 How are div elements used? How do they differ from elements like article or p?
+-divs are generic block elements, they can be used when your content isn't a paragraph, table, or hyperlink
+    articles and paragraphs contain text elements
 
 How are span elements used? How do they differ from elements like a or b?
+-span elements are generic inline elements to help label specific text
+    (call us at <span class="phone">(777)777-7777</span>)
 
 Creating forms in HTML:
 
 In form elements, what is the method attribute used to specify? The action attribute?
+-the method attribute specifies how to send the form data (ie get or post)
+-the action attribute sets the route for the information to be sent to
 
 List the various types of input tags. How do you set an input tag’s type?
+-you set inputs type with type="type"
+-text, radio, checkbox, select (dropdown), textarea
 
 For an input tag, what does the name attribute do?
+-it sets the name of the fields
+
+***for attribute of a label element should be the same as id of related element***
 
 CSS
 In CSS, what is a selector? A property? A value?
+-a selector determines where a rule will be applied (can use tag name, #id, or .class)
+-a property is a thing you can set (general ie margin, block, inline/text, font, background)
+-a value takes fixed keywords or other values to set how a property will show up (px, em, %, etc)
 
 What is the difference between combining selectors and descendent selectors?
+-descendent selector matches all elements that are descendents of an element
+-combining selectors combines elements and class, or elements and ids of that type
 
 For block elements, what attributes are applied to all four sides?
+-margin, border, and padding
 
 What is the Order of Precedence in CSS?
+-specificity rules then top to bottom order (ie id, class, element, then top to bottom)
 
 Flask and Jinja2
 What is the request object in Flask? What can you use it for?

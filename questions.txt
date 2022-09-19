@@ -65,8 +65,14 @@ What is the Order of Precedence in CSS?
 
 Flask and Jinja2
 What is the request object in Flask? What can you use it for?
+-the request object can be used to pull information from another route using request.args request.args.get('variableyouwant')
 
 In Flask, how do you access form values for a POST request? How about for a GET request?
+-a GET request is the default request and is implied so you do not have to specify it
+    (<form action="/greet> is equivalent to <form action="/greet" method="GET")
+-a POST request is not default and will need to be specified in both the html and receiving route
+    (in html <form action="/greet", method="POST")
+    (in Flask route @app.route('/greet', methods=['POST']))
 
 What is Jinja? What does the function render_template do?
 

@@ -66,6 +66,8 @@ What is the Order of Precedence in CSS?
 Flask and Jinja2
 What is the request object in Flask? What can you use it for?
 -the request object can be used to pull information from another route using request.args request.args.get('variableyouwant')
+from flask import render_template
+from flask import request
 
 In Flask, how do you access form values for a POST request? How about for a GET request?
 -a GET request is the default request and is implied so you do not have to specify it
@@ -75,43 +77,106 @@ In Flask, how do you access form values for a POST request? How about for a GET 
     (in Flask route @app.route('/greet', methods=['POST']))
 
 What is Jinja? What does the function render_template do?
+-Jinja is a template system for Python that is used by Flask, render template will return
+    any html templates you created in your templates folder
 
 Jinja syntax to know
 
 For-loops
+{% for VAR in LIST%}...{% endfor %}
+Hi, {{name}}, You're so:
+<ul>
+    {% for compliment in compliments %}
+    <li>{{compliment}}</li>
+    {% endfor %}
+</ul>
 
 If-statements
+{% if CONDITION %}...{% endif %}
+Hi, {{name}}!
+    {% if compliments %}
+    You're so:
+    <ul>
+    {% for compliment in compliments %}
+        <li>{{compliment}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 Showing text with Jinja
+-can use jinja templates to produce html (text)
+    ie return render_template("template_you_want.html")
 
 Setting HTML attributes using Jinja
+-can set html variables in return render_template function
+    ie return render_template("compliment.html", name=player, compliment=nice_thing)
 
 Template inheritance (using a base.html to create consistency)
+-can create a base html with {% block BLOCKNAME %}...{% endblock}
+    (ie <title>{% block title%}title goes here{% endblock %}</title>
+    <body>{% block content%}body content goes here{% endblock %}</body>)
+-to extend page using template:
+    {% block BLOCKNAME %}...{% endblock}
+    {% extends 'base.html' %}
+    {% block title%}title goes here{% endblock %}
+    {% block content%}body content goes here{% endblock %}
 
 How the Web Works
 When you type a URL into a web browser, what happens?
+-browser looks up ip address for the domain
+-browser initiates tcp connection wih the server
+-browser sends http request to the server
+-server processes request and sends back response
+-browser renders the content
 
 Be able to explain this in your own words, hitting each main concept from the lecture.
 
 What are the five main components of a URL?
+-protocol, hostname, port, resource, optional query string
 
 What is the difference between a GET request and a POST request?
+-GET passes arguments via the url, if you know the arguments you can change the url, many websites operate this
+    way, there's no side effect of the request (ie refreshing the page)
+-POST from additional data in request (like a dictionary), used for requests with side effects (saving data
+    to a database), purchase etc, gives you warning if you relaod ie confirm form resubmission, puts stuff in body
 
 Cookies and Sessions
 What is a cookie? What is a session? How are the two different?
+-cookies save state (as html is a stateless protocol), they are name/value pairs stored by the client and by
+    default last as long as the browser session (session cookie), they are just strings and store a limited
+    amount of info and are somewhat low level in use
+-sessions (such as Flask sessions) are like a magic dictionary that saves state as cookies do (using cookies
+    "under the hood"), they contain info from the current browser, preserve type (list stays list), and are
+    automatically encrypted, every Jinja server and template has access to session
+
+from flask import Flask, session
+app = Flask(__name__)
+app.secret_key = 'YOUR SECRET KEY'
+*now you can use session onject in view functions and Jinja templates
+session['my_variable'] = data
+can now use session in Jinja templates {{ session['fav_number']}}
+can delete session: del session['fav_number']
 
 APIs and Requests Library
 What is an API? What does API stand for?
+-Application Programming Interface, it is like a webserver responding to requests from a computer, it
+    will get the requests and respond in JSON (a data format string that can respresent key-value pairs and
+    be converted into a dictionary)
 
 What are some examples of web-based APIs?
-
+-iTunes has a music search API, TicketMaster has an event search API
 What is an API endpoint?
+-API endpoint is a route and is appended to the base url of the API just like a Flask route
 
 What are the core tenets of REST in the context of APIs?
+-Representational State Transfer: urls are uniform and human readable, client and server are independet of each
+    other, https is the protocol, each request is independent
 
 How can you keep your API access tokens out of git? What should you do if you accidentally add your API tokens to git?
+-you can put your API access tokens in nyour secrets.sh file that is .gitignored and then source the API when needed to run the server
 
 Why is it bad to push your API tokens to git?
+-api tokens are your personal token to use, people can steal them and you can be charged for use etc
 
 Testing
 What are doctests? How do you create and run them?

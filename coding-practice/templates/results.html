@@ -5,8 +5,26 @@
 <h1>Results</h1>
 
 <p>
-    #4) Finish the route called /results. Then, display appropriate results on 
-    this page.
-</p>
 
+            <h4>Here is your chosen message:</h4>
+
+
+        {% if cheery %}
+   
+            You are doing great and I see wonderful things ahead of you!
+       
+        {% elif honest %}
+       
+            This is hard but I believe you will get through it.
+        
+        {% elif dreary %}
+       
+            I'm not sure how you can do it, things are looking glum.
+        
+        {% else %}
+            You picked more than one message you silly goose! 
+        {% endif %}
+
+    </p>
+</p>
 {% endblock %}

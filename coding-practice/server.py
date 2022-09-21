@@ -26,8 +26,11 @@ def show_form():
 @app.route('/results')
 def show_results():
     """Show resulting message."""
+    cheery = request.args.get('cheery')
+    honest = request.args.get('honest')
+    dreary = request.args.get('dreary')
 
-    return render_template('results.html')
+    return render_template('results.html', cheery=cheery, honest=honest, dreary=dreary)
 
 @app.route('/save_name')
 def set_session():
